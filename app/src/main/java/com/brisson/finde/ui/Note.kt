@@ -3,12 +3,14 @@ package com.brisson.finde.ui
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
@@ -87,6 +89,23 @@ private fun NoteItem(
     }
 }
 
+@Composable
+fun ReplyItem(modifier: Modifier = Modifier) {
+    Row(modifier = modifier.height(IntrinsicSize.Max).background(MaterialTheme.colors.background)) {
+        Box(
+            modifier = Modifier
+                .width(2.dp)
+                .fillMaxHeight()
+                .clip(RoundedCornerShape(topEnd = 2.dp, bottomEnd = 2.dp))
+                .background(Color.LightGray)
+        )
+        Text(
+            modifier = Modifier.padding(6.dp),
+            text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore"
+        )
+    }
+}
+
 @Preview
 @Composable
 fun PreviewNote() {
@@ -98,5 +117,13 @@ fun PreviewNote() {
             onShare = {},
             timeStamp = System.currentTimeMillis()
         )
+    }
+}
+
+@Preview
+@Composable
+fun PreviewReplyItem() {
+    FindeTheme {
+        ReplyItem()
     }
 }
